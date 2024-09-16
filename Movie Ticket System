@@ -1,0 +1,200 @@
+include <iomanip>
+using namespace std;
+
+// Constants for movie ratings' age requirements and ticket prices
+const int AGE_G = 0; 
+// G (General Audiences)
+const int AGE_PG = 7; 
+// PG (Parental Guidance)
+const int AGE_PG13 = 13; // PG-13 (Parents Strongly Cautioned)
+const int AGE_R = 17; 
+// R (Restricted)
+const int AGE_NC17 = 18; // NC-17 (Adults Only)
+
+const double ADULT_TICKET_PRICE = 12.00;
+const double CHILD_TICKET_PRICE = 8.00;
+int main() {
+ 
+// Display movie options
+ 
+cout << " Movie Ticket Booking" << endl;
+ 
+cout << "Today's Movies:" << endl;
+ 
+cout << "1. \"The Matrix\" - Rated R" << endl;
+ 
+cout << "2. \"Star Wars: Episode V - The Empire Strikes Back\" - Rated PG" << endl;
+ 
+cout << "3. \"Inception\" - Rated PG-13" << endl;
+ 
+cout << "4. \"Toy Story\" - Rated G" << endl;
+ 
+cout << "5. \"Crash\" - Rated NC-17" << endl;
+ 
+// User selects a movie
+ 
+int movieChoice;
+ 
+cout << "Please select a movie by entering its number: ";
+ 
+cin >> movieChoice;
+ 
+// Validate movie choice
+ 
+if (movieChoice < 1 || movieChoice > 5) {
+ 
+cout << "Invalid movie selection. Exiting program." << endl;
+ 
+return 1;
+ 
+}
+ 
+// Display movie selection based on user's choice
+ 
+switch (movieChoice) {
+ 
+case 1:
+ 
+cout << "You have selected \"The Matrix\" - Rated R." << endl;
+ 
+break;
+ 
+case 2:
+ 
+cout << "You have selected \"Star Wars: Episode V - The Empire Strikes Back\" - Rated PG." << endl;
+ 
+break;
+ 
+case 3:
+ 
+cout << "You have selected \"Inception\" - Rated PG-13." << endl;
+ 
+break;
+ 
+case 4:
+ 
+cout << "You have selected \"Toy Story\" - Rated G." << endl;
+ 
+break;
+ 
+case 5:
+ 
+cout << "You have selected \"Crash\" - Rated NC-17." << endl;
+ 
+break;
+ 
+}
+ 
+// Get user's age
+ 
+int age;
+ 
+cout << "Please enter your age: ";
+ 
+cin >> age;
+ 
+// Validate age for movie rating
+ 
+switch (movieChoice) {
+ 
+case 1:
+ 
+if (age < AGE_R) {
+ 
+cout << "You are not old enough to watch this movie. Exiting program." << endl;
+ 
+return 1;
+ 
+}
+ 
+break;
+ 
+case 2:
+ 
+if (age < AGE_PG) {
+ 
+cout << "You are not old enough to watch this movie. Exiting program." << endl;
+ 
+return 1;
+ 
+}
+ 
+break;
+ 
+case 3:
+ 
+if (age < AGE_PG13) {
+ 
+cout << "You are not old enough to watch this movie. Exiting program." << endl;
+ 
+return 1;
+ 
+}
+ 
+break;
+ 
+case 4:
+ 
+// No age restriction for G-rated movies
+ 
+break;
+ 
+case 5:
+ 
+if (age < AGE_NC17) {
+ 
+cout << "You are not old enough to watch this movie. Exiting program." << endl;
+ 
+return 1;
+ 
+}
+ 
+break;
+ 
+}
+ 
+// Ask user for ticket quantities
+ 
+int numAdultTickets, numChildTickets;
+ 
+cout << "How many adult tickets would you like to purchase? ";
+ 
+cin >> numAdultTickets;
+ 
+cout << "How many child tickets would you like to purchase? ";
+ 
+cin >> numChildTickets;
+ 
+// Calculate total cost
+ 
+double totalCost = numAdultTickets * ADULT_TICKET_PRICE + numChildTickets * CHILD_TICKET_PRICE;
+ 
+cout << fixed << setprecision(2);
+ 
+cout << "Total cost: $" << totalCost << endl;
+ 
+// Ask for payment amount
+ 
+double amountTendered;
+ 
+cout << "Please enter the amount you are tendering: $";
+ 
+cin >> amountTendered;
+ 
+// Validate payment
+ 
+if (amountTendered < totalCost) {
+ 
+cout << "Error: Amount tendered is less than the total cost. Transaction Cancelled." << endl;
+ 
+return 1;
+ 
+}
+ 
+// Calculate change
+ 
+double change = amountTendered - totalCost;
+ 
+cout << "Change: $" << change << endl;
+ 
+return 0;
